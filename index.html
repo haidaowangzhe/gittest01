@@ -6,7 +6,7 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="box"></div>
+    <div id="box">等待加载中……</div>
 
     <script>
       const images = document.getElementById("box");
@@ -22,7 +22,12 @@
       loadImagePromise(
         "https://b0.bdstatic.com/7d91177f44849fe672e70005346a5561.jpg",
       ).then(
-        (image) => images.appendChild(image),
+        (image) => {
+          setTimeout(() => {
+            images.innerText = "";
+            images.appendChild(image);
+          }, 2000);
+        },
         (error) => console.log(error),
       );
     </script>
